@@ -1,0 +1,24 @@
+﻿## .NET
+bin/
+obj/
+*.user
+*.suo
+*.vs/
+.vs/
+
+## IDE
+.idea/
+.vscode/
+*.swp
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Build
+publish/
+dist/
+
+## Scripts temporales
+generate.ps1
+

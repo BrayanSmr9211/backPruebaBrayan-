@@ -106,7 +106,7 @@ public class EventoServiceTests
         _eventoRepoMock.Setup(x => x.ExisteSuperposicionAsync(1, It.IsAny<DateTime>(), It.IsAny<DateTime>(), null))
             .ReturnsAsync(true);
 
-        var fechaInicio = DateTime.UtcNow.AddDays(10);
+        var fechaInicio = DateTime.UtcNow.Date.AddDays(((int)DayOfWeek.Wednesday - (int)DateTime.UtcNow.DayOfWeek + 7) % 7 + 7).AddHours(14);
         var request = new CrearEventoRequest("Evento Overlap", "Descripcion del evento overlap", 1, 100,
             fechaInicio, fechaInicio.AddHours(3), 50m, TipoEvento.Conferencia);
 
@@ -126,7 +126,7 @@ public class EventoServiceTests
         _eventoRepoMock.Setup(x => x.CreateAsync(It.IsAny<Evento>()))
             .ReturnsAsync((Evento e) => { e.Id = 1; return e; });
 
-        var fechaInicio = DateTime.UtcNow.AddDays(10);
+        var fechaInicio = DateTime.UtcNow.Date.AddDays(((int)DayOfWeek.Wednesday - (int)DateTime.UtcNow.DayOfWeek + 7) % 7 + 7).AddHours(14);
         var request = new CrearEventoRequest("Conferencia Tech", "Una conferencia de tecnologia", 1, 150,
             fechaInicio, fechaInicio.AddHours(4), 75m, TipoEvento.Conferencia);
 
@@ -139,4 +139,5 @@ public class EventoServiceTests
         Assert.Equal("conferencia", result.TipoEvento);
     }
 }
+
 
